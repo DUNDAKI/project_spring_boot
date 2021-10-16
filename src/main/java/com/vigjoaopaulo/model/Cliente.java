@@ -26,6 +26,7 @@ public class Cliente {
 
 	
 	
+	
 	  public Cliente() {
 	  
 	  }
@@ -40,6 +41,7 @@ public class Cliente {
 	  public String getNome() { return nome; }
 	  
 	  public void setNome(String nome) { this.nome = nome; }
+	 
 	 
 	
 	
