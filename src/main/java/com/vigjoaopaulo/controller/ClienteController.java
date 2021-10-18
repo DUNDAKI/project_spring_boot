@@ -23,7 +23,7 @@ import com.vigjoaopaulo.repository.ClienteRepository;
 @Service
 
 public class ClienteController {
-	private Cliente getCliente;
+	
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
@@ -38,11 +38,14 @@ public class ClienteController {
 	public Cliente getCliente(@PathVariable Long id) {
 		return clienteRepository.findById(id).get();
 	}	
+	
+	
 	@PostMapping("/clientes")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Cliente addCliente(@RequestBody Cliente cliente) {
 		return clienteRepository.save(cliente);
 	}
+	
 	
 	@DeleteMapping("/clientes/{id}")
 	public void deleteCliente(@PathVariable Long id) {
@@ -52,14 +55,15 @@ public class ClienteController {
 	
 	@PutMapping("/clientes/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Cliente updateCliente(@PathVariable Long id,  @RequestBody Cliente cliente) {
+	public  String  updateCliente(@PathVariable Long id,  @RequestBody Cliente cliente) {
 		
 		Cliente newObj = clienteRepository.findById(id).get();
 		
 		newObj.setNome(cliente.getNome());
 		
+		clienteRepository.save(newObj);
 		
-		return  clienteRepository.save(newObj);
+		return  "Atualizado... ";
 	
 	
 	}
